@@ -1,0 +1,12 @@
+name: fluintl
+description: A Flutter Internationalization package.Use it to quickly build an international Apps.
+version: 1.0.0
+author: thl <863764940@qq.com>
+homepage: https://github.com/Sky24n/fluintl
+
+environment:
+  sdk: ">=1.19.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
