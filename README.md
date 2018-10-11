@@ -1,4 +1,4 @@
-# fluintl (Flutter国际化终极版<sup>almost</sup>)
+# fluintl ( Flutter国际化终极版<sup>almost</sup> )
 
 [![Pub](https://img.shields.io/pub/v/fluintl.svg?style=flat-square)](https://pub.dartlang.org/packages/fluintl)
 
