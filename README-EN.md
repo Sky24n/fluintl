@@ -1,21 +1,45 @@
+## [README of Chinese][readme]
+
 # fluintl (Flutter Internationalization Package)
 
 [![Pub](https://img.shields.io/pub/v/fluintl.svg?style=flat-square)](https://pub.dartlang.org/packages/fluintl)
 
-## [README of Chinese][readme]
+fluintl  It is a library that supports internationalization and can be quickly integrated to implement multi-language applications.CustomLocalizations: Multi-language support class。LBaseState: Can get strings concisely。  
 
+set localized values:  
+setLocalizedValues(localizedValues).  
 
+specify localizationsDelegates and supportedLocales for MaterialApp:  
+MaterialApp(
+   home: MyHomePage(),
+   localizationsDelegates: [
+   GlobalMaterialLocalizations.delegate,
+   GlobalWidgetsLocalizations.delegate,
+   CustomLocalizations.delegate
+      ],
+   supportedLocales: CustomLocalizations.supportedLocales,
+);
+For international application, please refer to [flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)App。 
 
-## Screenshot
-![image](https://github.com/Sky24n/LDocuments/blob/master/AppImgs/flutter_wanandroid/2018-10-12_00_57_58.gif)  
+### Add dependency
+```yaml
+dependencies:
+  flutter_localizations:
+    sdk: flutter  
+  fluintl: x.x.x  #latest version
+```
 
-![image](https://github.com/Sky24n/LDocuments/blob/master/AppImgs/flutter_wanandroid/2018-10-12_00_58_49.gif)
-
-
-
-
-
-
+### APIs
+```
+setLocalizedSimpleValues(values)            : set localized simple values.
+setLocalizedValues(values)                  : set localized values.
+CustomLocalizations.delegate                : CustomLocalizations.
+CustomLocalizations.supportedLocales        : supported locales.
+CustomLocalizations.init(context)           : CustomLocalizations init.(MyHomePage init)
+CustomLocalizations.of(context)             : get CustomLocalizations.
+getString(id, {languageCode, countryCode})  : get string by id,Can be specified languageCode,countryCode.
+LBaseState (extends or with LBaseState)     : It is convenient and concise to get the string cl.getString(id). (MyHomePage cannot be used)
+```
 
 
 
