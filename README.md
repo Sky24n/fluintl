@@ -10,15 +10,16 @@ fluintl 是一个应用国际化支持的库，可快速集成实现应用多语
 setLocalizedValues(localizedValues).  
 
 在MaterialApp指定localizationsDelegates和supportedLocales:  
-MaterialApp(
-   home: MyHomePage(),
-   localizationsDelegates: [
-   GlobalMaterialLocalizations.delegate,
-   GlobalWidgetsLocalizations.delegate,
-   CustomLocalizations.delegate
-      ],
-   supportedLocales: CustomLocalizations.supportedLocales,
-);
+MaterialApp(  
+   home: MyHomePage(),  
+   localizationsDelegates: [  
+   GlobalMaterialLocalizations.delegate,  
+   GlobalWidgetsLocalizations.delegate,  
+   CustomLocalizations.delegate   
+   ],  
+   supportedLocales: CustomLocalizations.supportedLocales,  
+);  
+  
 应用国际化具体使用可参考[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)App。 
 
 ### Add dependency
