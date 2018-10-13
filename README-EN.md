@@ -76,8 +76,7 @@ CustomLocalizations.instance.getString(id)
 extends or with LBaseState()  (MyHomePageState can not use)  
 cl.getString(id)  
 ```
-  
-For detailed application of international application, please refer to [flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)App。 
+6.For detailed application of international application, please refer to [flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)App。 
 
 ### Add dependency
 ```yaml

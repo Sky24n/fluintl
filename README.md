@@ -6,9 +6,9 @@
 
 fluintl 是一个为应用提供国际化的库，可快速集成实现应用多语言。该库封装了一个国际化支持类，通过提供统一方法getString(id)获取字符串。CustomLocalizations多语言支持类。LBaseState可简洁获取字符串。  
 使用步骤:  
-1.建立多语言资源字符串id管理类StringIds 和 多语言资源Map  
-///多语言资源id管理类.  
+1.建立多语言资源字符串id管理类StringIds 和 多语言资源Map
 ``` dart
+///多语言资源id管理类.  
 class StringIds {  
   static String titleHome = 'title_home';  
 }  
@@ -38,7 +38,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
   }  
 };  
 ```
-2.在MyApp initState配置多语言资源(可配置通用或简单多语言资源,二选一)  
+2.在MyApp initState配置多语言资源(可配置通用或简单多语言资源,二选一)
 ``` dart
   void initState() {    
     super.initState();      
@@ -46,7 +46,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
     setLocalizedValues(localizedValues); //配置多语言资源      
   }   
 ```
-3.在MaterialApp指定localizationsDelegates和supportedLocales:  
+3.在MaterialApp指定localizationsDelegates和supportedLocales:
 ``` dart
 MaterialApp(  
    home: MyHomePage(),  
@@ -58,7 +58,7 @@ MaterialApp(
    supportedLocales: CustomLocalizations.supportedLocales,//设置支持本地化语言集合     
 );  
 ```
-4.在MyHomePage初始化CustomLocalizations:  
+4.在MyHomePage初始化CustomLocalizations:
 ``` dart
 class _MyHomePageState extends State<MyHomePage> {  
   Widget build(BuildContext context) {    
@@ -67,15 +67,15 @@ class _MyHomePageState extends State<MyHomePage> {
   }    
 } 
 ```
-5.字符串获取  
+5.字符串获取
  ``` dart
  CustomLocalizations.of(context).getString(id)  
  CustomLocalizations.instance.getString(id)  
+ 
  继承LBaseState()  (MyHomePageState不能使用)  
  cl.getString(id)  
  ```
- 
-应用国际化详细使用请参考[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)App。 
+6.应用国际化详细使用请参考[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)App。
 
 ### Add dependency
 ```yaml
