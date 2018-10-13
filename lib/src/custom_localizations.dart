@@ -104,7 +104,7 @@ class CustomLocalizations {
   }
 
   static const LocalizationsDelegate<CustomLocalizations> delegate =
-  _CustomLocalizationsDelegate();
+      _CustomLocalizationsDelegate();
 }
 
 class _CustomLocalizationsDelegate
@@ -112,10 +112,9 @@ class _CustomLocalizationsDelegate
   const _CustomLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) =>
-      (_localizedSimpleValues.isNotEmpty
-          ? _localizedSimpleValues.keys.contains(locale.languageCode)
-          : _localizedValues.keys.contains(locale.languageCode));
+  bool isSupported(Locale locale) => (_localizedSimpleValues.isNotEmpty
+      ? _localizedSimpleValues.keys.contains(locale.languageCode)
+      : _localizedValues.keys.contains(locale.languageCode));
 
   @override
   Future<CustomLocalizations> load(Locale locale) {
