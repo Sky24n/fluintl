@@ -7,10 +7,10 @@
 fluintl It is an international library for applications that can be quickly integrated to implement multi-language applications. 
 The library encapsulates an internationalization support class that obtains a string by providing a uniform method getString(id). 
 CustomLocalizations multi-language support class. LBaseState can get strings neatly.  
-Steps for usage：
+Steps for usage:  
 1.Establish multi-language resource string id management class StringIds and multi-language resource map  
-///Multi-language resource id management class. 
 ``` dart
+///Multi-language resource id management class. 
 class StringIds {  
   static String titleHome = 'title_home';  
 }  
