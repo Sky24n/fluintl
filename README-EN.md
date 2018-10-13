@@ -9,7 +9,8 @@ The library encapsulates an internationalization support class that obtains a st
 CustomLocalizations multi-language support class. LBaseState can get strings neatly.  
 Steps for usage：
 1.Establish multi-language resource string id management class StringIds and multi-language resource map  
-///Multi-language resource id management class.  
+///Multi-language resource id management class. 
+``` dart
 class StringIds {  
   static String titleHome = 'title_home';  
 }  
@@ -38,34 +39,43 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
     },  
   }  
 };  
+``` 
 2.Configure multi-language resources in MyApp initState (configurable universal or simple multi-language resources, choose one)  
+``` dart
   void initState() {    
     super.initState();      
 //    setLocalizedSimpleValues(localizedSimpleValues);//set localized simple values.  
     setLocalizedValues(localizedValues); //set localized values.      
   }    
+```
 3.Specify localizationsDelegates and supportedLocales in the MaterialApp:  
+``` dart
 MaterialApp(  
    home: MyHomePage(),  
    localizationsDelegates: [  
-   GlobalMaterialLocalizations.delegate, //provides localized strings and other values for the Material Components library.   
-   GlobalWidgetsLocalizations.delegate,  //defines the default text direction, either left to right or right to left, for the widgets library.
+   GlobalMaterialLocalizations.delegate,  
+   GlobalWidgetsLocalizations.delegate,  
    CustomLocalizations.delegate //set Localizations delegate.  
    ],  
    supportedLocales: CustomLocalizations.supportedLocales,//Set support for localized language collections     
 );  
+```
 4.at MyHomePage init CustomLocalizations:  
+``` dart
 class _MyHomePageState extends State<MyHomePage> {  
   Widget build(BuildContext context) {    
     CustomLocalizations.init(context); //MyHomePageState init.      
     ...      
   }    
 }  
+```
 5.get String  
+``` dart
 CustomLocalizations.of(context).getString(id)  
 CustomLocalizations.instance.getString(id)  
 extends or with LBaseState()  (MyHomePageState can not use)  
 cl.getString(id)  
+```
   
 For detailed application of international application, please refer to [flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)App。 
 
