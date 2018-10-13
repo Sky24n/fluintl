@@ -5,7 +5,7 @@
 [![Pub](https://img.shields.io/pub/v/fluintl.svg?style=flat-square)](https://pub.dartlang.org/packages/fluintl)
 
 fluintl 是一个为应用提供国际化的库，可快速集成实现应用多语言。该库封装了一个国际化支持类，通过提供统一方法getString(id)获取字符串。CustomLocalizations多语言支持类。LBaseState可简洁获取字符串。  
-使用步骤：
+使用步骤:  
 1.建立多语言资源字符串id管理类StringIds 和 多语言资源Map  
 ///多语言资源id管理类.  
 class StringIds {  
