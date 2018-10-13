@@ -71,10 +71,10 @@ class _MyHomePageState extends State<MyHomePage> {
 ```
 5.get String  
 ``` dart
-CustomLocalizations.of(context).getString(id)  
-CustomLocalizations.instance.getString(id)  
+CustomLocalizations.of(context).getString(StringIds.titleHome)  
+CustomLocalizations.instance.getString(StringIds.titleHome)  
 extends or with LBaseState()  (MyHomePageState can not use)  
-cl.getString(id)  
+cl.getString(StringIds.titleHome)  
 ```
 6.For detailed application of international application, please refer to [flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)App。 
 

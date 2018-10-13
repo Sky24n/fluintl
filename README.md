@@ -69,11 +69,11 @@ class _MyHomePageState extends State<MyHomePage> {
 ```
 5.字符串获取
  ``` dart
- CustomLocalizations.of(context).getString(id)  
- CustomLocalizations.instance.getString(id)  
+ CustomLocalizations.of(context).getString(StringIds.titleHome)  
+ CustomLocalizations.instance.getString(StringIds.titleHome)  
  
  继承LBaseState()  (MyHomePageState不能使用)  
- cl.getString(id)  
+ cl.getString(StringIds.titleHome)  
  ```
 6.应用国际化详细使用请参考[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)App。
 
