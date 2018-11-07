@@ -60,7 +60,7 @@ MaterialApp(
    supportedLocales: CustomLocalizations.supportedLocales,//Set support for localized language collections     
 );  
 ```
-4.at MyHomePage init CustomLocalizations:  
+4.at MyHomePage init CustomLocalizations:  //There may be problems that are not recommended.
 ``` dart
 class _MyHomePageState extends State<MyHomePage> {  
   Widget build(BuildContext context) {    
@@ -71,7 +71,12 @@ class _MyHomePageState extends State<MyHomePage> {
 ```
 5.get String  
 ``` dart
-CustomLocalizations.of(context).getString(StringIds.titleHome)  
+//Recommended use
+IntlUtil.getString(context, StringIds.titleHome);
+CustomLocalizations.of(context).getString(StringIds.titleHome)
+
+
+//There may be problems that are not recommended.
 CustomLocalizations.instance.getString(StringIds.titleHome)  
 extends or with LBaseState()  (MyHomePageState can not use)  
 cl.getString(StringIds.titleHome)  

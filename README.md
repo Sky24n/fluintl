@@ -58,21 +58,24 @@ MaterialApp(
    supportedLocales: CustomLocalizations.supportedLocales,//设置支持本地化语言集合     
 );  
 ```
-4.在MyHomePage初始化CustomLocalizations:
+4.在MyHomePage初始化CustomLocalizations: //可能存在问题，不推荐使用。
 ``` dart
 class _MyHomePageState extends State<MyHomePage> {  
   Widget build(BuildContext context) {    
-    CustomLocalizations.init(context); //在主页初始化.      
+    CustomLocalizations.init(context); //在主页初始化.  可能存在问题，不推荐使用。
     ...      
   }    
 } 
 ```
 5.字符串获取
  ``` dart
- CustomLocalizations.of(context).getString(StringIds.titleHome)  
+ //推荐使用　
+ IntlUtil.getString(context, StringIds.titleHome);　
+ CustomLocalizations.of(context).getString(StringIds.titleHome)
+
+ ///可能存在问题，不推荐使用。
  CustomLocalizations.instance.getString(StringIds.titleHome)  
- 
- 继承LBaseState()  (MyHomePageState不能使用)  
+ 继承LBaseState()  (MyHomePageState不能使用)
  cl.getString(StringIds.titleHome)  
  ```
 6.应用国际化详细使用请参考[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)App。

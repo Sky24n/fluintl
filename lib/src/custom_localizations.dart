@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 /// localizedSimpleValues exapmle.
 /// Map<String, Map<String, String>> _localizedSimpleValues = {
@@ -58,6 +58,7 @@ class CustomLocalizations {
 
   static CustomLocalizations instance;
 
+  ///不推荐使用.
   static void init(BuildContext context) {
     instance = of(context);
   }
