@@ -60,26 +60,37 @@ MaterialApp(
    supportedLocales: CustomLocalizations.supportedLocales,//Set support for localized language collections     
 );  
 ```
-4.at MyHomePage init CustomLocalizations:  //There may be problems that are not recommended.
-``` dart
-class _MyHomePageState extends State<MyHomePage> {  
-  Widget build(BuildContext context) {    
-    CustomLocalizations.init(context); //MyHomePageState init.      
-    ...      
-  }    
-}  
+4.get String
 ```
-5.get String  
-``` dart
-//Recommended use
 IntlUtil.getString(context, StringIds.titleHome);
 CustomLocalizations.of(context).getString(StringIds.titleHome)
 
+```
 
-//There may be problems that are not recommended.
-CustomLocalizations.instance.getString(StringIds.titleHome)  
-extends or with LBaseState()  (MyHomePageState can not use)  
-cl.getString(StringIds.titleHome)  
+
+4.at MyHomePage init CustomLocalizations:  //There may be problems that are not recommended.
+``` dart
+class _MyHomePageState extends State<MyHomePage> {
+  Widget build(BuildContext context) {
+    CustomLocalizations.init(context); //MyHomePageState init.
+    ...
+  }
+}
+```
+5.Other(do not recommended use)
+```
+// MyHomePage init CustomLocalizations
+class _MyHomePageState extends State<MyHomePage> {
+  Widget build(BuildContext context) {
+    CustomLocalizations.init(context);
+    ...
+  }
+}
+
+//getString
+CustomLocalizations.instance.getString(StringIds.titleHome)
+extends or with LBaseState()  (MyHomePageState can not use)
+cl.getString(StringIds.titleHome)
 ```
 6.For detailed application of international application, please refer to [flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)App。 
 
@@ -98,9 +109,12 @@ setLocalizedSimpleValues(values)            : set localized simple values.
 setLocalizedValues(values)                  : set localized values.
 CustomLocalizations.delegate                : CustomLocalizations.
 CustomLocalizations.supportedLocales        : supported locales.
-CustomLocalizations.init(context)           : CustomLocalizations init.(MyHomePage init)
 CustomLocalizations.of(context)             : get CustomLocalizations.
 getString(id, {languageCode, countryCode})  : get string by id,Can be specified languageCode,countryCode.
+IntlUtil.getString(context, id)             : get string by id,Can be specified languageCode,countryCode.
+
+// do not recommended use
+CustomLocalizations.init(context)           : CustomLocalizations init.(MyHomePage init)
 LBaseState (extends or with LBaseState)     : It is convenient and concise to get the string cl.getString(id). (MyHomePage cannot be used)
 ```
 
