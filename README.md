@@ -100,7 +100,8 @@ IntlUtil.getString(context, id)             : 通过id获取字符串,可指定l
 
 //不推荐使用
 CustomLocalizations.init(context)           : 自定义本地化代理初始化.(在MyHomePage初始化)
-LBaseState (extends or with LBaseState)     : 可方便简洁获取字符串cl.getString(id).(MyHomePage不能使用)
+LBaseState (extends or with LBaseState)     : 可方便简洁获取字符串
+cl.getString(id).(MyHomePage不能使用)
 ```
 
 ### Example

@@ -115,7 +115,8 @@ IntlUtil.getString(context, id)             : get string by id,Can be specified 
 
 // do not recommended use
 CustomLocalizations.init(context)           : CustomLocalizations init.(MyHomePage init)
-LBaseState (extends or with LBaseState)     : It is convenient and concise to get the string cl.getString(id). (MyHomePage cannot be used)
+LBaseState (extends or with LBaseState)     : It is convenient and concise to get the string
+cl.getString(id). (MyHomePage cannot be used)
 ```
 
 ### Example
