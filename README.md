@@ -212,7 +212,7 @@ class _SettingPageState extends LBaseState<SettingPage> {
 
 ### Demo: [flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid).
 
-### APK:[点击下载 v0.0.2](https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppStore/flutter_wanandroid.apk)
+### APK:[点击下载 v0.1.1](https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppStore/flutter_wanandroid.apk)
 
 ### APK QR:
   ![flutter_wanandroid](https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_wanandroid/qrcode.png)
