@@ -77,7 +77,7 @@ MaterialApp(
  extends or with LBaseState()  (MyHomePageState不能使用)
  cl.getString(StringIds.titleHome)
 ```
-6.应用国际化详细使用请参考[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)App。
+6.应用国际化详细使用请参考[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)App。  
 Q：Flutter国际化系统切换iOS不生效问题？  
 A：在Xcode项目Localizations下添加支持语言即可，[原文](https://stanzhai.site/blog/post/stanzhai/Flutter国际化设置在iOS设备上不生效的问题)。
 
