@@ -225,6 +225,12 @@ class _SettingPageState extends LBaseState<SettingPage> {
 ![image](https://github.com/Sky24n/LDocuments/blob/master/AppImgs/flutter_wanandroid/2018-10-12_00_58_49.gif)
 
 
+### 关于使用本开源库
+如果您是用于公司项目，请随意使用～  
+如果您是用于开源项目，希望您能直接使用本库(fluintl: ^0.1.2),不要直接copy出去啦，顺便帮作者推荐一下，不胜感激～
+
+### 最后，如果您觉得本项目不错的话，来个star支持下作者吧！
+
 
 [readme]: https://github.com/Sky24n/fluintl
 [readme-en]: https://github.com/Sky24n/fluintl/blob/master/README-EN.md
