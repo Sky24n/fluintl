@@ -12,7 +12,7 @@ fluintl 是一个为应用提供国际化的库，可快速集成实现应用多
 使用方式：
 ```yaml
 dependencies:
-  common_utils: 1.0.9  
+  fluintl: 0.1.2  
 ```
 
 ### 使用步骤:  
