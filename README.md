@@ -5,7 +5,17 @@
 [![Pub](https://img.shields.io/pub/v/fluintl.svg?style=flat-square)](https://pub.dartlang.org/packages/fluintl)
 
 fluintl 是一个为应用提供国际化的库，可快速集成实现应用多语言。该库封装了一个国际化支持类，通过提供统一方法getString(id)获取字符串。CustomLocalizations多语言支持类。LBaseState可简洁获取字符串。  
-使用步骤:  
+
+### 关于使用本开源库
+如果您是用于公司项目，请随意使用～  
+如果您是用于开源项目，未经本人许可，请勿copy源码到您的项目使用！  
+使用方式：
+```yaml
+dependencies:
+  common_utils: 1.0.9  
+```
+
+### 使用步骤:  
 1.创建多语言资源字符串id管理类StringIds 和 多语言资源Map
 ```
 ///多语言资源id管理类.  
@@ -223,11 +233,6 @@ class _SettingPageState extends LBaseState<SettingPage> {
 ![image](https://github.com/Sky24n/LDocuments/blob/master/AppImgs/flutter_wanandroid/2018-10-12_00_57_58.gif)  
 
 ![image](https://github.com/Sky24n/LDocuments/blob/master/AppImgs/flutter_wanandroid/2018-10-12_00_58_49.gif)
-
-
-### 关于使用本开源库
-如果您是用于公司项目，请随意使用～  
-如果您是用于开源项目，希望您能直接使用本库(fluintl: ^0.1.2),不要直接copy出去啦，顺便帮作者推荐一下，不胜感激～
 
 ### 最后，如果您觉得本项目不错的话，来个star支持下作者吧！
 
