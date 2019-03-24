@@ -12,38 +12,50 @@ fluintl 是一个为应用提供国际化的库，可快速集成实现应用多
 使用方式：
 ```yaml
 dependencies:
-  fluintl: ^0.1.2  
+  fluintl: ^0.1.3  
 ```
 
+### v0.1.3(2019.03.25)
+支持复用。  
+替换字符串格式要求：'%\${index}\$s' ，{index} 第几个参数，从0开始。
+
+```
+ Ids.click_times: '%\$0\$s点击了%\$1\$s次',   
+   
+ IntlUtil.getString(context, Ids.click_times, params: ['Tom', '$_counter'])  
+ // print: Tom点击了0次
+```
+
+
 ### 使用步骤:  
-1.创建多语言资源字符串id管理类StringIds 和 多语言资源Map
+1.创建多语言资源字符串id管理类Ids 和 多语言资源Map
 ```
 ///多语言资源id管理类.  
-class StringIds {  
-  static String titleHome = 'title_home';  
+class Ids {  
+  static String titleHome = 'title_home'; 
 }  
 ///简单多语言资源.  
 Map<String, Map<String, String>> localizedSimpleValues = {  
   'en': {    
-    StringIds.titleHome: 'Home',  
+    Ids.titleHome: 'Home',  
   },  
   'zh': {    
-    StringIds.titleHome: '主页',  
+    Ids.titleHome: '主页',  
   },  
 };  
 ///多语言资源.  
 Map<String, Map<String, Map<String, String>>> localizedValues = {  
   'en': {  
     'US': {  
-      StringIds.titleHome: 'Home',  
+      Ids.titleHome: 'Home',  
     }  
   },  
   'zh': {  
     'CN': {  
-      StringIds.titleHome: '主页',  
+      Ids.titleHome: '主页',  
     },  
     'HK': {  
-      StringIds.titleHome: '主頁',  
+      Ids.titleHome: '主頁',  
     },  
   }  
 };  
@@ -70,8 +82,9 @@ MaterialApp(
 ```
 4.字符串获取
 ```
- IntlUtil.getString(context, StringIds.titleHome);　
- CustomLocalizations.of(context).getString(StringIds.titleHome)
+ IntlUtil.getString(context, Ids.titleHome);
+ IntlUtil.getString(context, Ids.titleHome, params: [param1, param2]);　
+ CustomLocalizations.of(context).getString(Ids.titleHome)
 ```
 5.其他(不推荐使用)
 ```
@@ -83,9 +96,9 @@ MaterialApp(
   }
 
  // 字符串获取
- CustomLocalizations.instance.getString(StringIds.titleHome)
+ CustomLocalizations.instance.getString(Ids.titleHome)
  extends or with LBaseState()  (MyHomePageState不能使用)
- cl.getString(StringIds.titleHome)
+ cl.getString(Ids.titleHome)
 ```
 6.应用国际化详细使用请参考[flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)App。  
 Q：Flutter国际化系统切换iOS不生效问题？  
@@ -102,129 +115,25 @@ dependencies:
 
 ### APIs
 ```
-setLocalizedSimpleValues(values)            : 配置简单多语言资源.
-setLocalizedValues(values)                  : 配置多语言资源.
-CustomLocalizations.delegate                : 自定义本地化代理.
-CustomLocalizations.supportedLocales        : 本地支持的语言环境.
-CustomLocalizations.of(context)             : 获取CustomLocalizations.
-getString(id, {languageCode, countryCode})  : 通过id获取字符串,可指定languageCode,countryCode.
-IntlUtil.getString(context, id)             : 通过id获取字符串,可指定languageCode,countryCode.
+setLocalizedSimpleValues(values)                    : 配置简单多语言资源.
+setLocalizedValues(values)                          : 配置多语言资源.
+CustomLocalizations.delegate                        : 自定义本地化代理.
+CustomLocalizations.supportedLocales                : 本地支持的语言环境.
+CustomLocalizations.of(context)                     : 获取CustomLocalizations.
+getString(id, {languageCode, countryCode, params})  : 通过id获取字符串,可指定languageCode,countryCode.
+IntlUtil.getString(context, id, params)             : 通过id获取字符串,可指定languageCode,countryCode.
 
 //不推荐使用
-CustomLocalizations.init(context)           : 自定义本地化代理初始化.(在MyHomePage初始化)
-LBaseState (extends or with LBaseState)     : 可方便简洁获取字符串
+CustomLocalizations.init(context)                   : 自定义本地化代理初始化.(在MyHomePage初始化)
+LBaseState (extends or with LBaseState)             : 可方便简洁获取字符串
 cl.getString(id).(MyHomePage不能使用)
 ```
 
-### Example
-```
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:fluintl/fluintl.dart';
-
-///多语言资源id管理类.
-class StringIds {
-  static String titleHome = 'title_home';
-}
-///简单多语言资源.
-Map<String, Map<String, String>> localizedSimpleValues = {
-  'en': {
-    StringIds.titleHome: 'Home',
-  },
-  'zh': {
-    StringIds.titleHome: '主页',
-  },
-};
-///多语言资源.
-Map<String, Map<String, Map<String, String>>> localizedValues = {
-  'en': {
-    'US': {
-      StringIds.titleHome: 'Home',
-    }
-  },
-  'zh': {
-    'CN': {
-      StringIds.titleHome: '主页',
-    },
-    'HK': {
-      StringIds.titleHome: '主頁',
-    },
-    'TW': {
-      StringIds.titleHome: '主頁',
-    }
-  }
-};
-
-class _MyAppState extends State<MyApp> {
-  Locale _locale;
-
-  @override
-  void initState() {
-    super.initState();
-//    setLocalizedSimpleValues(localizedSimpleValues);//配置简单多语言资源
-    setLocalizedValues(localizedValues);//配置多语言资源
-//    _locale = new Locale('en', 'US');//English
-//    _locale = new Locale('zh', 'HK');//繁體中文（香港）
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyHomePage(),
-      locale: _locale,
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        CustomLocalizations.delegate //设置本地化代理
-      ],
-      supportedLocales: CustomLocalizations.supportedLocales,//设置支持语言
-    );
-  }
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    //在主页初始化.
-    CustomLocalizations.init(context);
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(
-              CustomLocalizations.of(context).getString(StringIds.titleHome)),
-        ),
-        body: Center(
-          child: new Text(
-              CustomLocalizations.instance.getString(StringIds.titleHome)),
-        ));
-  }
-}
-
-class _SettingPageState extends LBaseState<SettingPage> {
-  @override
-  Widget build(BuildContext context) {
-    CustomLocalizations _customLocal = CustomLocalizations.instance;
-    return Scaffold(
-      body: new ListView(
-        children: <Widget>[
-          ListTile(title: Text(CustomLocalizations.of(context).getString(StringIds.titleSetting))),
-          ListTile(title: Text(CustomLocalizations.instance.getString(StringIds.titleSetting))),
-          ListTile(title: Text(_customLocal.getString(StringIds.titleSetting))),
-          ListTile(title: Text(cl.getString(StringIds.titleSetting))),
-          ListTile(),
-          ListTile(title: Text(cl.getString(StringIds.titleSetting, languageCode: 'en', countryCode: 'US'))),
-          ListTile(title: Text(cl.getString(StringIds.titleSetting, languageCode: 'zh', countryCode: 'CN'))),
-          ListTile(title: Text(cl.getString(StringIds.titleSetting, languageCode: 'zh', countryCode: 'HK'))),
-          ListTile(title: Text(cl.getString(StringIds.titleSetting, languageCode: 'zh', countryCode: 'TW'))),
-        ],
-      ),
-    );
-  }
-}
-
-```
+### [Example](./example/lib/main.dart)
 
 ### Demo: [flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid).
 
-### APK:[点击下载 v0.1.1](https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppStore/flutter_wanandroid.apk)
+### APK:[点击下载 v0.1.x](https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppStore/flutter_wanandroid.apk)
 
 ### APK QR:
   ![flutter_wanandroid](https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_wanandroid/qrcode.png)
@@ -234,7 +143,13 @@ class _SettingPageState extends LBaseState<SettingPage> {
 
 ![image](https://github.com/Sky24n/LDocuments/blob/master/AppImgs/flutter_wanandroid/2018-10-12_00_58_49.gif)
 
-### 最后，如果您觉得本项目不错的话，来个star支持下作者吧！
+### 关于作者
+GitHub : [Sky24n](https://github.com/Sky24n)  
+简书 &nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://www.jianshu.com/u/cbf2ad25d33a)  
+掘金 &nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://juejin.im/user/5b9e8a92e51d453df0440422/posts)  
+Pub &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://pub.flutter-io.cn/packages?q=email%3A863764940%40qq.com)    
+Email &nbsp;&nbsp;: 863764940@qq.com  
+如果您觉得本项目不错的话，来个star支持下作者吧!  
 
 
 [readme]: https://github.com/Sky24n/fluintl

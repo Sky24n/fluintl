@@ -7,6 +7,19 @@
 fluintl It is an international library for applications that can be quickly integrated to implement multi-language applications. 
 The library encapsulates an internationalization support class that obtains a string by providing a uniform method getString(id). 
 CustomLocalizations multi-language support class. LBaseState can get strings neatly.  
+
+### v0.1.3(2019.03.25)
+multiplexing。  
+Replacement String Format Requirements：'%\${index}\$s' ，{index} The nth parameter, starting at 0。
+
+```
+ Ids.click_times: '%\$0\$s click on %\$1\$s times',
+   
+ IntlUtil.getString(context, Ids.click_times, params: ['Tom', '$_counter'])
+
+ // print: Tom click on 0 times
+```
+
 Steps for usage:  
 1.Establish multi-language resource string id management class StringIds and multi-language resource map  
 ``` dart
@@ -63,8 +76,8 @@ MaterialApp(
 4.get String
 ```
 IntlUtil.getString(context, StringIds.titleHome);
+IntlUtil.getString(context, Ids.titleHome, params: [param1, param2]);　
 CustomLocalizations.of(context).getString(StringIds.titleHome)
-
 ```
 
 
@@ -105,125 +118,22 @@ dependencies:
 
 ### APIs
 ```
-setLocalizedSimpleValues(values)            : set localized simple values.
-setLocalizedValues(values)                  : set localized values.
-CustomLocalizations.delegate                : CustomLocalizations.
-CustomLocalizations.supportedLocales        : supported locales.
-CustomLocalizations.of(context)             : get CustomLocalizations.
-getString(id, {languageCode, countryCode})  : get string by id,Can be specified languageCode,countryCode.
-IntlUtil.getString(context, id)             : get string by id,Can be specified languageCode,countryCode.
+setLocalizedSimpleValues(values)                    : set localized simple values.
+setLocalizedValues(values)                          : set localized values.
+CustomLocalizations.delegate                        : CustomLocalizations.
+CustomLocalizations.supportedLocales                : supported locales.
+CustomLocalizations.of(context)                     : get CustomLocalizations.
+getString(id, {languageCode, countryCode, params})  : get string by id,Can be specified languageCode,countryCode.
+IntlUtil.getString(context, id, params)             : get string by id,Can be specified languageCode,countryCode.
 
 // do not recommended use
-CustomLocalizations.init(context)           : CustomLocalizations init.(MyHomePage init)
-LBaseState (extends or with LBaseState)     : It is convenient and concise to get the string
+CustomLocalizations.init(context)                   : CustomLocalizations init.(MyHomePage init)
+LBaseState (extends or with LBaseState)             : It is convenient and concise to get the string
 cl.getString(id). (MyHomePage cannot be used)
 ```
 
-### Example
-``` dart
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:fluintl/fluintl.dart';
+### [Example](./example/lib/main.dart)
 
-///localized values ids class.
-class StringIds {
-  static String titleHome = 'title_home';
-}
-///localized simple values.
-Map<String, Map<String, String>> localizedSimpleValues = {
-  'en': {
-    StringIds.titleHome: 'Home',
-  },
-  'zh': {
-    StringIds.titleHome: '主页',
-  },
-};
-///localized values.
-Map<String, Map<String, Map<String, String>>> localizedValues = {
-  'en': {
-    'US': {
-      StringIds.titleHome: 'Home',
-    }
-  },
-  'zh': {
-    'CN': {
-      StringIds.titleHome: '主页',
-    },
-    'HK': {
-      StringIds.titleHome: '主頁',
-    },
-    'TW': {
-      StringIds.titleHome: '主頁',
-    }
-  }
-};
-
-class _MyAppState extends State<MyApp> {
-  Locale _locale;
-
-  @override
-  void initState() {
-    super.initState();
-//    setLocalizedSimpleValues(localizedSimpleValues);//set localized simple values.
-    setLocalizedValues(localizedValues);//set localized values.
-//    _locale = new Locale('en', 'US');//English
-//    _locale = new Locale('zh', 'HK');//繁體中文（香港）
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyHomePage(),
-      locale: _locale,
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        CustomLocalizations.delegate //set CustomLocalizations delegate.
-      ],
-      supportedLocales: CustomLocalizations.supportedLocales,//set supportedLocales.
-    );
-  }
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    //HomePageState init.
-    CustomLocalizations.init(context);
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(
-              CustomLocalizations.of(context).getString(StringIds.titleHome)),
-        ),
-        body: Center(
-          child: new Text(
-              CustomLocalizations.instance.getString(StringIds.titleHome)),
-        ));
-  }
-}
-
-class _SettingPageState extends LBaseState<SettingPage> {
-  @override
-  Widget build(BuildContext context) {
-    CustomLocalizations _customLocal = CustomLocalizations.instance;
-    return Scaffold(
-      body: new ListView(
-        children: <Widget>[
-          ListTile(title: Text(CustomLocalizations.of(context).getString(StringIds.titleSetting))),
-          ListTile(title: Text(CustomLocalizations.instance.getString(StringIds.titleSetting))),
-          ListTile(title: Text(_customLocal.getString(StringIds.titleSetting))),
-          ListTile(title: Text(cl.getString(StringIds.titleSetting))),
-          ListTile(),
-          ListTile(title: Text(cl.getString(StringIds.titleSetting, languageCode: 'en', countryCode: 'US'))),
-          ListTile(title: Text(cl.getString(StringIds.titleSetting, languageCode: 'zh', countryCode: 'CN'))),
-          ListTile(title: Text(cl.getString(StringIds.titleSetting, languageCode: 'zh', countryCode: 'HK'))),
-          ListTile(title: Text(cl.getString(StringIds.titleSetting, languageCode: 'zh', countryCode: 'TW'))),
-        ],
-      ),
-    );
-  }
-}
-
-```
 
 [readme]: https://github.com/Sky24n/fluintl
 [readme-en]: https://github.com/Sky24n/fluintl/blob/master/README-EN.md
