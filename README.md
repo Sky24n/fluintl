@@ -10,7 +10,7 @@ fluintl 是一个为应用提供国际化的库，可快速集成实现应用多
 如果您是用于公司项目，请随意使用～  
 如果您是用于开源项目，未经本人许可，请勿copy源码到您的项目使用！  
 使用方式：
-```yaml
+```dart
 dependencies:
   fluintl: ^0.1.3  
 ```
@@ -19,7 +19,7 @@ dependencies:
 支持复用。  
 替换字符串格式要求：'%\${index}\$s' ，{index} 第几个参数，从0开始。
 
-```
+```dart
  Ids.click_times: '%\$0\$s点击了%\$1\$s次',   
    
  IntlUtil.getString(context, Ids.click_times, params: ['Tom', '$_counter'])  
@@ -29,7 +29,7 @@ dependencies:
 
 ### 使用步骤:  
 1.创建多语言资源字符串id管理类Ids 和 多语言资源Map
-```
+```dart
 ///多语言资源id管理类.  
 class Ids {  
   static String titleHome = 'title_home'; 
@@ -61,7 +61,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
 };  
 ```
 2.在MyApp initState配置多语言资源(可配置通用或简单多语言资源,二选一)
-```
+```dart
   void initState() {    
     super.initState();      
 //    setLocalizedSimpleValues(localizedSimpleValues);//配置简单多语言资源  
@@ -69,7 +69,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
   }   
 ```
 3.在MaterialApp指定localizationsDelegates和supportedLocales:
-```
+```dart
 MaterialApp(  
    home: MyHomePage(),  
    localizationsDelegates: [  
@@ -81,13 +81,13 @@ MaterialApp(
 );  
 ```
 4.字符串获取
-```
+```dart
  IntlUtil.getString(context, Ids.titleHome);
  IntlUtil.getString(context, Ids.titleHome, params: [param1, param2]);　
  CustomLocalizations.of(context).getString(Ids.titleHome)
 ```
 5.其他(不推荐使用)
-```
+```dart
  //在主页初始化.
  class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
@@ -105,7 +105,7 @@ Q：Flutter国际化系统切换iOS不生效问题？
 A：在Xcode项目Localizations下添加支持语言即可，[原文](https://stanzhai.site/blog/post/stanzhai/Flutter国际化设置在iOS设备上不生效的问题)。
 
 ### Add dependency
-```yaml
+```dart
 dependencies:
   flutter_localizations:
     sdk: flutter  
@@ -114,7 +114,7 @@ dependencies:
 ```
 
 ### APIs
-```
+```dart
 setLocalizedSimpleValues(values)                    : 配置简单多语言资源.
 setLocalizedValues(values)                          : 配置多语言资源.
 CustomLocalizations.delegate                        : 自定义本地化代理.
