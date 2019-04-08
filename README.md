@@ -17,9 +17,9 @@ dependencies:
 
 ### v0.1.3(2019.03.25)
 支持复用。  
-替换字符串格式要求：'%\${index}\$s' ，{index} 第几个参数，从0开始。
-
 ```dart
+ //替换字符串格式要求：'%\${index}\$s' ，{index} 第几个参数，从0开始。
+
  Ids.click_times: '%\$0\$s点击了%\$1\$s次',   
    
  IntlUtil.getString(context, Ids.click_times, params: ['Tom', '$_counter'])  
