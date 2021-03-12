@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 /// 多语言资源id管理类.
 class Ids {
   static String titleHome = 'title_home';
   static String titleSetting = 'title_setting';
   static String click_times = 'click_times';
 }
+
 /// 简单多语言资源.
 Map<String, Map<String, String>> localizedSimpleValues = {
   'en': {
@@ -21,6 +23,7 @@ Map<String, Map<String, String>> localizedSimpleValues = {
     Ids.click_times: '%\$0\$s点击了%\$1\$s次',
   },
 };
+
 /// 多语言资源.
 Map<String, Map<String, Map<String, String>>> localizedValues = {
   'en': {
@@ -59,7 +62,7 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  Locale _locale;
+  Locale? _locale;
 
   @override
   void initState() {
@@ -91,7 +94,7 @@ class MyAppState extends State<MyApp> {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.titleId}) : super(key: key);
+  MyHomePage({Key? key, required this.titleId}) : super(key: key);
 
   final String titleId;
 
@@ -155,21 +158,31 @@ class SettingPage extends StatefulWidget {
 class _SettingPageState extends LBaseState<SettingPage> {
   @override
   Widget build(BuildContext context) {
-    CustomLocalizations _customLocal = CustomLocalizations.instance;
+    CustomLocalizations? _customLocal = CustomLocalizations.instance;
     return Scaffold(
       appBar: AppBar(
         title: Text(IntlUtil.getString(context, Ids.titleSetting)),
       ),
       body: new ListView(
         children: <Widget>[
-          ListTile(title: Text(CustomLocalizations.of(context).getString(Ids.titleSetting))),
+//          ListTile(
+//              title: Text(
+//                  CustomLocalizations.of(context)?.getString(Ids.titleSetting))),
           ListTile(title: Text(IntlUtil.getString(context, Ids.titleSetting))),
-          ListTile(title: Text(CustomLocalizations.instance.getString(Ids.titleSetting))),
-          ListTile(title: Text(_customLocal.getString(Ids.titleSetting))),
-          ListTile(title: Text(cl.getString(Ids.titleSetting))),
-          ListTile(title: Text(IntlUtil.getString(context, Ids.titleSetting, languageCode: 'en', countryCode: 'US'))),
-          ListTile(title: Text(IntlUtil.getString(context, Ids.titleSetting, languageCode: 'zh', countryCode: 'CN'))),
-          ListTile(title: Text(IntlUtil.getString(context, Ids.titleSetting, languageCode: 'zh', countryCode: 'HK'))),
+//          ListTile(
+//              title: Text(
+//                  CustomLocalizations.instance?.getString(Ids.titleSetting))),
+//          ListTile(title: Text(_customLocal?.getString(Ids.titleSetting))),
+//          ListTile(title: Text(cl?.getString(Ids.titleSetting))),
+          ListTile(
+              title: Text(IntlUtil.getString(context, Ids.titleSetting,
+                  languageCode: 'en', countryCode: 'US'))),
+          ListTile(
+              title: Text(IntlUtil.getString(context, Ids.titleSetting,
+                  languageCode: 'zh', countryCode: 'CN'))),
+          ListTile(
+              title: Text(IntlUtil.getString(context, Ids.titleSetting,
+                  languageCode: 'zh', countryCode: 'HK'))),
         ],
       ),
     );

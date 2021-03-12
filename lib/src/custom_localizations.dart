@@ -54,42 +54,45 @@ void setLocalizedValues(
 class CustomLocalizations {
   CustomLocalizations(this.locale);
 
-  Locale locale;
+  late Locale locale;
 
-  static CustomLocalizations instance;
+  static CustomLocalizations? instance;
 
   ///不推荐使用.
   static void init(BuildContext context) {
     instance = of(context);
   }
 
-  static CustomLocalizations of(BuildContext context) {
+  static CustomLocalizations? of(BuildContext context) {
     return Localizations.of<CustomLocalizations>(context, CustomLocalizations);
   }
 
   /// get string by id,Can be specified languageCode,countryCode.
   /// 通过id获取字符串,可指定languageCode,countryCode.
   String getString(String id,
-      {String languageCode, String countryCode, List<Object> params}) {
-    String value;
+      {String? languageCode,
+      String? countryCode,
+      List<Object>? params,
+      String defValue = ''}) {
+    String? value;
     String _languageCode = languageCode ?? locale.languageCode;
     if (_localizedSimpleValues.isNotEmpty) {
-      value = _localizedSimpleValues[_languageCode][id];
+      value = _localizedSimpleValues[_languageCode]![id];
     } else {
-      String _countryCode = countryCode ?? locale.countryCode;
+      String? _countryCode = countryCode ?? locale.countryCode;
       if (_countryCode == null ||
           _countryCode.isEmpty ||
-          !_localizedValues[_languageCode].keys.contains(_countryCode)) {
-        _countryCode = _localizedValues[_languageCode].keys.toList()[0];
+          !_localizedValues[_languageCode]!.keys.contains(_countryCode)) {
+        _countryCode = _localizedValues[_languageCode]!.keys.toList()[0];
       }
-      value = _localizedValues[_languageCode][_countryCode][id];
+      value = _localizedValues[_languageCode]![_countryCode]![id];
     }
     if (params != null && params.isNotEmpty) {
       for (int i = 0, length = params.length; i < length; i++) {
         value = value?.replaceAll('%\$$i\$s', '${params[i]}');
       }
     }
-    return value;
+    return value ?? defValue;
   }
 
   /// supported Locales
@@ -97,15 +100,15 @@ class CustomLocalizations {
   static Iterable<Locale> supportedLocales = _getSupportedLocales();
 
   static List<Locale> _getSupportedLocales() {
-    List<Locale> list = new List();
+    List<Locale> list = [];
     if (_localizedSimpleValues.isNotEmpty) {
       _localizedSimpleValues.keys.forEach((value) {
-        list.add(new Locale(value, ''));
+        list.add(Locale(value, ''));
       });
     } else {
       _localizedValues.keys.forEach((value) {
-        _localizedValues[value].keys.forEach((vv) {
-          list.add(new Locale(value, vv));
+        _localizedValues[value]!.keys.forEach((vv) {
+          list.add(Locale(value, vv));
         });
       });
     }
@@ -127,8 +130,7 @@ class _CustomLocalizationsDelegate
 
   @override
   Future<CustomLocalizations> load(Locale locale) {
-    return new SynchronousFuture<CustomLocalizations>(
-        new CustomLocalizations(locale));
+    return SynchronousFuture<CustomLocalizations>(CustomLocalizations(locale));
   }
 
   @override
