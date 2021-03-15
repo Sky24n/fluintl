@@ -1,6 +1,10 @@
+### 2.0.0
+
+* TODO: Migrate to null-safety.
+
 ### 0.1.3
 
-* TODO: add multiplexing. 新增复用。like：“你点击了{time}次”。
+* TODO: add multiplexing. 新增复用。like：“你点击了{time}次”.
 
 ### 0.1.2
 
